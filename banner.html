@@ -1,0 +1,234 @@
+
+<!DOCTYPE html>
+<html lang="en" id="lang">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1,user-scalable=no">
+<title>Image Size Simulation</title>
+<style>
+body {
+    margin: 0;
+}
+.border {
+    border: dashed red;
+}
+.header {
+    height: 155px;
+}
+.slider {
+    height: auto;
+    min-height: 180px;
+    max-height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto;
+}
+.slider-image {
+    flex-shrink: 1;
+    min-width: 100%;
+    min-height: 100%;
+}
+.slider-image div {
+    width: 100%;
+    min-height: 180px;
+    display: none;
+}
+.slider-image div.active {
+    display: inline;
+}
+.slider-image div img {
+    width: 100%;
+}
+.slider-prev, .slider-next {
+    height: 100%;
+    width: 40vw;
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.slider-prev {
+    left: 0;
+}
+.slider-next {
+    right: 0;
+}
+.slider-prev:hover, .slider-next:hover {
+    cursor: pointer;
+    opacity: .5;
+    background: #fff;
+}
+.slider-text {
+    display: none;
+}
+.slider-prev:hover .slider-text, .slider-next:hover .slider-text {
+    display: block;
+}
+.content {
+    height: 454px;
+}
+.icon-container {
+    width: 100%;
+    height: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: -webkit-flexbox;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.icon {
+    width: 255px;
+    height: 294px;
+}
+.footer {
+    height: 296px;
+}
+#puzzle {
+    transform: translateY(-5%);
+}
+#butterfly {
+    transform: translateY(20%);
+}
+#ribbons {
+    transform: translateY(-17%);
+}
+#dove {
+    transform: translateY(5%);
+}
+#shoes {
+    transform: translateY(-12%)
+}
+#taraxacum {
+    transform: translateY(18%)
+}
+#hand {
+    min-width: 550px
+}
+@media (max-width: 700px) {
+    .slider {
+        max-height: 180px;
+    }
+}
+@media (min-width: 700px) and (max-width: 1200px) {
+    .slider {
+        height: 31.25vw;
+    }
+}
+@media (max-width: 767px) {
+    .content {
+        height: auto;
+        padding: 60px 0;
+    }
+    .icon-container {
+        flex-direction: column;
+    }
+    .icon {
+        margin-bottom: 60px;
+        width: 189px;
+    }
+}
+@media (max-width: 1400px) {
+    #shoes {
+        transform: translateY(-10px);
+        min-width: 600px
+    }
+    #taraxacum {
+        transform: translateY(30px);
+        min-width: 600px
+    }
+}
+@media (max-width: 1182px) {
+    #ribbons {
+        transform: translateY(0);
+        min-width: 550px
+    }
+}
+@media (min-width: 1183px) and (max-width: 1608px) {
+    #ribbons {
+        transform: translateY(-20px);
+    }
+}
+@media (max-width: 1200px) {
+    #dove {
+        transform: translateY(10px);
+        min-width: 600px;
+    }
+}
+</style>
+</head>
+<body>
+    <div class="header border">Header section</div>
+    <div class="slider">
+        <div id="prev" class="slider-prev"><span class="slider-text">Previous</span></div>
+        <div class="slider-image">
+            <div>
+                <img id="ribbons" src="https://support-plus.hk/wp-content/uploads/2021/12/shutterstock_colourful-ribbons-min.jpg" />
+            </div>
+            <div class="active">
+                <img id="dove" src="https://support-plus.hk/wp-content/uploads/2021/12/shutterstock_hands-holding-white-dove.jpg" />
+            </div>
+            <div>
+                <img id="shoes" src="https://support-plus.hk/wp-content/uploads/2021/12/shutterstock_running-shoes-min-min.jpg" />
+            </div>
+            <div>
+                <img id="emoji" src="https://support-plus.hk/wp-content/uploads/2021/12/emoji-3.jpg" />
+            </div>
+            <div>
+                <img id="puzzle" src="https://support-plus.hk/wp-content/uploads/2021/12/shutterstock_puzzle-min.jpg" />
+            </div>
+            <div>
+                <img id="butterfly" src="https://support-plus.hk/wp-content/uploads/2021/12/shutterstock_butterfly-min.jpg" />
+            </div>
+            <div>
+                <img id="hand" src="https://support-plus.hk/wp-content/uploads/2021/12/image_banner_main.png" />
+            </div>
+            <div>
+                <img id="taraxacum" src="https://support-plus.hk/wp-content/uploads/2021/12/shutterstock_dandelions-min.jpg" />
+            </div>
+        </div>
+        <div id="next" class="slider-next"><span class="slider-text">Next</span></div>
+    </div>
+    <div class="content border">Content section
+        <div class="icon-container">
+            <div class="icon border">Icon</div>
+            <div class="icon border">Icon</div>
+            <div class="icon border">Icon</div>
+        </div>
+    </div>
+    <div class="footer border">Footer section</div>
+    <script>
+        var images = document.querySelector(".slider-image");
+        document.getElementById("prev").onclick = function() {
+            var active = images.querySelector(".active");
+            active.className = "";
+            if (active.previousElementSibling) {
+                active.previousElementSibling.className = "active";
+            } else {
+                images.lastElementChild.className = "active";
+            }
+        };
+        document.getElementById("next").onclick = function() {
+            var active = images.querySelector(".active");
+            active.className = "";
+            if (active.nextElementSibling) {
+                active.nextElementSibling.className = "active";
+            } else {
+                images.firstElementChild.className = "active";
+            }
+        };
+    </script>
+</body>
+</html>
+
